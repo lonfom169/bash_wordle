@@ -2,6 +2,7 @@
 
 path=$(dirname $0)
 word=$(shuf -n 1 $path/wordle_La.txt)
+won=false
 console="\033[38;2;66;255;255mGuess the word:\033[0m\n"
 echo -e "$console"
 
@@ -77,8 +78,8 @@ for i in {1..6}; do
     echo -e "$output_print"
 
     if [[ ${#greens} == "5" ]]; then
-        echo -e "Congrats! Correct word was found in \033[38;2;66;255;255m$i\033[0m attempts."
-        exit
+        won=true
+        break
     fi
 
     greens="$(echo $greens | grep -o . | sort | tr -d "\n" | tr -s "a-z")"
@@ -136,6 +137,10 @@ for i in {1..6}; do
     slot5=""
 done
 
-echo -e "You lost! The correct word was: \033[38;2;66;255;255m$word\033[0m"
+if [[ $won == false ]]; then
+    echo -e "You lost! The correct word was: \033[38;2;66;255;255m$word\033[0m"
+else
+    echo -e "Congrats! Correct word was found in \033[38;2;66;255;255m$i\033[0m attempts."
+fi
 
 $SHELL
