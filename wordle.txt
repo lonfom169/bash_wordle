@@ -1855,6 +1855,7 @@ cesti
 cetes
 cetyl
 cezve
+chaat
 chace
 chack
 chaco
@@ -4797,6 +4798,7 @@ hable
 habus
 hacek
 hacks
+hacky
 hadal
 haded
 hades
@@ -5473,6 +5475,7 @@ james
 jammy
 jamon
 janes
+janky
 janns
 janny
 janty
@@ -5944,6 +5947,7 @@ kophs
 kopje
 koppa
 korai
+koran
 koras
 korat
 kores
@@ -7474,6 +7478,7 @@ nikau
 nills
 nimbi
 nimbs
+nimby
 nimps
 niner
 nines
@@ -8814,6 +8819,7 @@ quops
 quota
 quote
 quoth
+quran
 qursh
 quyte
 rabat

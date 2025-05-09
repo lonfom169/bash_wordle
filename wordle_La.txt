@@ -59,6 +59,7 @@ allot
 allow
 alloy
 aloft
+aloha
 alone
 along
 aloof
@@ -71,12 +72,16 @@ amaze
 amber
 amble
 amend
+amigo
 amiss
 amity
 among
+amour
 ample
 amply
+amuck
 amuse
+ancho
 angel
 anger
 angle
@@ -139,6 +144,7 @@ axial
 axiom
 axion
 azure
+babka
 bacon
 badge
 badly
@@ -147,7 +153,9 @@ baggy
 baker
 baler
 balmy
+balsa
 banal
+bandy
 banjo
 barge
 baron
@@ -298,6 +306,7 @@ bugle
 build
 built
 bulge
+bulgy
 bulky
 bully
 bunch
@@ -325,16 +334,19 @@ cagey
 cairn
 camel
 cameo
+campy
 canal
 candy
 canny
 canoe
 canon
 caper
+capri
 caput
 carat
 cargo
 carol
+carom
 carry
 carve
 caste
@@ -347,6 +359,7 @@ cavil
 cease
 cedar
 cello
+chaat
 chafe
 chaff
 chain
@@ -437,6 +450,7 @@ comma
 conch
 condo
 conic
+copay
 copse
 coral
 corer
@@ -510,6 +524,7 @@ cutie
 cyber
 cycle
 cynic
+dacha
 daddy
 daily
 dairy
@@ -517,6 +532,7 @@ daisy
 dally
 dance
 dandy
+dater
 datum
 daunt
 dealt
@@ -596,6 +612,7 @@ drift
 drill
 drink
 drive
+droid
 droit
 droll
 drone
@@ -651,6 +668,7 @@ email
 embed
 ember
 emcee
+emote
 empty
 enact
 endow
@@ -698,6 +716,7 @@ facet
 faint
 fairy
 faith
+fakir
 false
 fancy
 fanny
@@ -819,6 +838,7 @@ froth
 frown
 froze
 fruit
+fubar
 fudge
 fugue
 fully
@@ -849,6 +869,7 @@ geeky
 geese
 genie
 genre
+geode
 ghost
 ghoul
 giant
@@ -882,6 +903,7 @@ golem
 golly
 gonad
 goner
+gonna
 goody
 gooey
 goofy
@@ -927,6 +949,7 @@ grown
 gruel
 gruff
 grunt
+guano
 guard
 guava
 guess
@@ -945,13 +968,15 @@ gusto
 gusty
 gypsy
 habit
+hacky
+haiku
 hairy
 halve
 handy
+hanky
 happy
 hardy
 harem
-harpy
 harry
 harsh
 haste
@@ -976,6 +1001,7 @@ helix
 hello
 hence
 heron
+hijab
 hilly
 hinge
 hippo
@@ -1013,6 +1039,7 @@ hydro
 hyena
 hymen
 hyper
+icier
 icily
 icing
 ideal
@@ -1047,6 +1074,7 @@ islet
 issue
 itchy
 ivory
+janky
 jaunt
 jazzy
 jelly
@@ -1054,6 +1082,7 @@ jerky
 jetty
 jewel
 jiffy
+jihad
 joint
 joist
 joker
@@ -1067,11 +1096,14 @@ jumpy
 junta
 junto
 juror
+kabob
 kappa
 karma
 kayak
+kazoo
 kebab
 khaki
+kinda
 kinky
 kiosk
 kitty
@@ -1086,6 +1118,7 @@ knock
 knoll
 known
 koala
+koran
 krill
 label
 labor
@@ -1101,6 +1134,7 @@ larva
 lasso
 latch
 later
+latex
 lathe
 latte
 laugh
@@ -1196,6 +1230,7 @@ mangy
 mania
 manic
 manly
+manna
 manor
 maple
 march
@@ -1237,6 +1272,7 @@ minim
 minor
 minty
 minus
+mirin
 mirth
 miser
 missy
@@ -1248,6 +1284,8 @@ mogul
 moist
 molar
 moldy
+molly
+momma
 money
 month
 moody
@@ -1282,7 +1320,10 @@ music
 musky
 musty
 myrrh
+nabob
+nacho
 nadir
+naggy
 naive
 nanny
 nasal
@@ -1301,6 +1342,7 @@ nicer
 niche
 niece
 night
+nimby
 ninja
 ninny
 ninth
@@ -1332,6 +1374,7 @@ offer
 often
 olden
 older
+oldie
 olive
 ombre
 omega
@@ -1347,6 +1390,7 @@ organ
 other
 otter
 ought
+ouija
 ounce
 outdo
 outer
@@ -1365,6 +1409,7 @@ pagan
 paint
 paler
 palsy
+panda
 panel
 panic
 pansy
@@ -1390,6 +1435,7 @@ peach
 pearl
 pecan
 pedal
+peeve
 penal
 pence
 penne
@@ -1401,6 +1447,7 @@ pesky
 pesto
 petal
 petty
+phage
 phase
 phone
 phony
@@ -1415,6 +1462,7 @@ pinch
 piney
 pinky
 pinto
+pious
 piper
 pique
 pitch
@@ -1430,10 +1478,12 @@ plait
 plane
 plank
 plant
+plasm
 plate
 plaza
 plead
 pleat
+plebe
 plied
 plier
 pluck
@@ -1447,6 +1497,7 @@ point
 poise
 poker
 polar
+polio
 polka
 polyp
 pooch
@@ -1469,6 +1520,7 @@ pride
 pried
 prime
 primo
+primp
 print
 prior
 prism
@@ -1525,6 +1577,7 @@ quite
 quota
 quote
 quoth
+quran
 rabbi
 rabid
 racer
@@ -1540,6 +1593,7 @@ ramen
 ranch
 randy
 range
+rangy
 rapid
 rarer
 raspy
@@ -1851,6 +1905,7 @@ spank
 spare
 spark
 spasm
+spate
 spawn
 speak
 spear
@@ -2019,6 +2074,7 @@ tasty
 tatty
 taunt
 tawny
+taxed
 teach
 teary
 tease
@@ -2082,6 +2138,7 @@ topaz
 topic
 torch
 torso
+torte
 torus
 total
 totem
@@ -2149,6 +2206,8 @@ udder
 ulcer
 ultra
 umbra
+unbag
+uncap
 uncle
 uncut
 under
@@ -2156,10 +2215,12 @@ undid
 undue
 unfed
 unfit
+unhip
 unify
 union
 unite
 unity
+unjam
 unlit
 unmet
 unset
@@ -2184,6 +2245,7 @@ valid
 valor
 value
 valve
+vampy
 vapid
 vapor
 vault
@@ -2221,6 +2283,7 @@ voter
 vouch
 vowel
 vying
+wacko
 wacky
 wafer
 wager
@@ -2234,6 +2297,7 @@ watch
 water
 waver
 waxen
+wazoo
 weary
 weave
 wedge
@@ -2305,11 +2369,16 @@ wrote
 wrung
 wryly
 yacht
+yahoo
+yappy
 yearn
 yeast
 yield
 young
 youth
+yowza
+yucca
+yummy
 zebra
 zesty
 zonal
