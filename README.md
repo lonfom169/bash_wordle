@@ -1,7 +1,7 @@
 ## Overview
 
 bash_wordle is an implementation of the popular Wordle game, written in bash.
-It is meant to played completely offline, on Unix-like systems.
+It is meant to be played completely offline, on Unix-like systems.
 
 ## Running the script
 
