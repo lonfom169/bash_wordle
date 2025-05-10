@@ -67,10 +67,8 @@ for i in {1..6}; do
         fi
     done
 
-    output="$slot1$slot2$slot3$slot4$slot5"
-    output_print="\n\n********** $output ********** \033[38;2;66;255;255mTry #$i\033[0m"
-
-    echo -e "$output_print"
+    output="\n\n********** $slot1$slot2$slot3$slot4$slot5 ********** \033[38;2;66;255;255mTry #$i\033[0m"
+    echo -e "$output"
 
     if [[ ${#greens} == "5" ]]; then
         won=true
@@ -94,8 +92,7 @@ for i in {1..6}; do
     done <$path/alphabet.txt
 
     echo -e "$alphabet_print\n"
-
-    console+="$output_print\n$alphabet_print\n"
+    console+="$output\n$alphabet_print\n"
 
     output=""
     alphabet_print=""
