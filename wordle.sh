@@ -57,14 +57,9 @@ for i in {1..6}; do
                 temp=true
                 eval "$slot"='$temp'
                 yellows+="$(echo $draft | cut -c$a)"
-                has_yellow=true
                 break
             fi
         done
-        if [[ $has_yellow == true ]]; then
-            has_yellow=false
-            continue
-        fi
         if [[ ${!pos} == "" ]]; then
             temp="$(echo $draft | cut -c$a)"
             eval "$pos"='$temp'
@@ -87,40 +82,15 @@ for i in {1..6}; do
     grays="$(echo $grays | grep -o . | sort | tr -d "\n" | tr -s "a-z")"
 
     while read letter; do
-        for j in $(seq 1 ${#greens}); do
-            if [[ $letter == ${greens:j-1:1} ]]; then
-                alphabet_print+="\033[38;2;0;255;0m$letter\033[0m"
-                has_green=true
-                break
-            fi
-        done
-        if [[ $has_green == true ]]; then
-            has_green=false
-            continue
+        if [[ $(echo $letter | tr -d "$greens") == "" ]]; then
+            alphabet_print+="\033[38;2;0;255;0m$letter\033[0m"
+        elif [[ $(echo $letter | tr -d "$yellows") == "" ]]; then
+            alphabet_print+="\033[38;2;255;255;0m$letter\033[0m"
+        elif [[ $(echo $letter | tr -d "$grays") == "" ]]; then
+            alphabet_print+="\033[38;2;240;0;0m$letter\033[0m"
+        else
+            alphabet_print+="$letter"
         fi
-        for j in $(seq 1 ${#yellows}); do
-            if [[ $letter == ${yellows:j-1:1} ]]; then
-                alphabet_print+="\033[38;2;255;255;0m$letter\033[0m"
-                has_yellow=true
-                break
-            fi
-        done
-        if [[ $has_yellow == true ]]; then
-            has_yellow=false
-            continue
-        fi
-        for j in $(seq 1 ${#grays}); do
-            if [[ $letter == ${grays:j-1:1} ]]; then
-                alphabet_print+="\033[38;2;240;0;0m$letter\033[0m"
-                has_gray=true
-                break
-            fi
-        done
-        if [[ $has_gray == true ]]; then
-            has_gray=false
-            continue
-        fi
-        alphabet_print+="$letter"
     done <$path/alphabet.txt
 
     echo -e "$alphabet_print\n"
