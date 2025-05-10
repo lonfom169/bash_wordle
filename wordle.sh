@@ -20,8 +20,6 @@ for i in {1..6}; do
         if [[ $draft =~ [^a-zA-Z] ]]; then
             echo -e "\033[38;2;240;0;0m Wrong input\033[0m"
             read -n 1 -srp 'Press any key to continue'
-            clear
-            echo -e "$console"
             continue
         fi
 
@@ -31,10 +29,11 @@ for i in {1..6}; do
         else
             echo -e "\033[38;2;240;0;0m Not in word list\033[0m"
             read -n 1 -srp 'Press any key to continue'
-            clear
-            echo -e "$console"
         fi
     done
+
+    clear
+    echo -e "$console"
 
     for a in {1..5}; do
         pos=slot$a
@@ -70,7 +69,7 @@ for i in {1..6}; do
         fi
     done
 
-    output="\n\n********** $slot1$slot2$slot3$slot4$slot5 ********** \033[38;2;66;255;255mTry #$i\033[0m"
+    output="\n********** $slot1$slot2$slot3$slot4$slot5 ********** \033[38;2;66;255;255mTry #$i\033[0m"
     echo -e "$output"
 
     if [[ $won == true ]]; then
@@ -90,7 +89,7 @@ for i in {1..6}; do
     done <$path/alphabet.txt
 
     echo -e "$alphabet_print\n"
-    console+="$output\n$alphabet_print\n"
+    console+="\n$output\n"
 
     output=""
     alphabet_print=""
