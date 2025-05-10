@@ -75,10 +75,6 @@ for i in {1..6}; do
         break
     fi
 
-    greens="$(echo $greens | grep -o . | sort | tr -d "\n" | tr -s "a-z")"
-    yellows="$(echo $yellows | grep -o . | sort | tr -d "\n" | tr -s "a-z")"
-    grays="$(echo $grays | grep -o . | sort | tr -d "\n" | tr -s "a-z")"
-
     while read letter; do
         if [[ $(echo $letter | tr -d "$greens") == "" ]]; then
             alphabet_print+="\033[38;2;0;255;0m$letter\033[0m"
