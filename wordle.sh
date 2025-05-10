@@ -2,11 +2,12 @@
 
 path=$(dirname $0)
 word=$(shuf -n 1 $path/wordle_La.txt)
-won=false
 console="\033[38;2;66;255;255mGuess the word:\033[0m\n"
 echo -e "$console"
 
 for i in {1..6}; do
+    won=true
+
     marked1=false
     marked2=false
     marked3=false
@@ -57,6 +58,7 @@ for i in {1..6}; do
                 temp=true
                 eval "$slot"='$temp'
                 yellows+="$(echo $draft | cut -c$a)"
+                won=false
                 break
             fi
         done
@@ -64,14 +66,14 @@ for i in {1..6}; do
             temp="$(echo $draft | cut -c$a)"
             eval "$pos"='$temp'
             grays+="$(echo $draft | cut -c$a)"
+            won=false
         fi
     done
 
     output="\n\n********** $slot1$slot2$slot3$slot4$slot5 ********** \033[38;2;66;255;255mTry #$i\033[0m"
     echo -e "$output"
 
-    if [[ ${#greens} == "5" ]]; then
-        won=true
+    if [[ $won == true ]]; then
         break
     fi
 
@@ -92,7 +94,6 @@ for i in {1..6}; do
 
     output=""
     alphabet_print=""
-    greens=""
     slot1=""
     slot2=""
     slot3=""
@@ -103,7 +104,7 @@ done
 if [[ $won == false ]]; then
     echo -e "You lost! The correct word was: \033[38;2;66;255;255m$word\033[0m"
 else
-    echo -e "Congrats! Correct word was found in \033[38;2;66;255;255m$i\033[0m attempts."
+    echo -e "\nCongrats! Correct word was found in \033[38;2;66;255;255m$i\033[0m attempts."
 fi
 
 $SHELL
