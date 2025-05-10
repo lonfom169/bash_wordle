@@ -20,6 +20,8 @@ for i in {1..6}; do
         if [[ $draft =~ [^a-zA-Z] ]]; then
             echo -e "\033[38;2;240;0;0m Wrong input\033[0m"
             read -n 1 -srp 'Press any key to continue'
+            clear
+            echo -e "$console$alphabet_console\n"
             continue
         fi
 
@@ -29,6 +31,8 @@ for i in {1..6}; do
         else
             echo -e "\033[38;2;240;0;0m Not in word list\033[0m"
             read -n 1 -srp 'Press any key to continue'
+            clear
+            echo -e "$console$alphabet_console\n"
         fi
     done
 
@@ -91,6 +95,7 @@ for i in {1..6}; do
     fi
 
     console+="\n$output\n"
+    alphabet_console=$alphabet_print
 
     output=""
     alphabet_print=""
