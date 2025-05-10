@@ -72,10 +72,6 @@ for i in {1..6}; do
     output="\n********** $slot1$slot2$slot3$slot4$slot5 ********** \033[38;2;66;255;255mTry #$i\033[0m"
     echo -e "$output"
 
-    if [[ $won == true ]]; then
-        break
-    fi
-
     while read letter; do
         if [[ $(echo $letter | tr -d "$greens") == "" ]]; then
             alphabet_print+="\033[38;2;0;255;0m$letter\033[0m"
@@ -89,6 +85,11 @@ for i in {1..6}; do
     done <$path/alphabet.txt
 
     echo -e "$alphabet_print\n"
+
+    if [[ $won == true ]]; then
+        break
+    fi
+
     console+="\n$output\n"
 
     output=""
@@ -103,7 +104,7 @@ done
 if [[ $won == false ]]; then
     echo -e "You lost! The correct word was: \033[38;2;66;255;255m$word\033[0m"
 else
-    echo -e "\nCongrats! Correct word was found in \033[38;2;66;255;255m$i\033[0m attempts."
+    echo -e "Congrats! Correct word was found in \033[38;2;66;255;255m$i\033[0m attempts."
 fi
 
 $SHELL
