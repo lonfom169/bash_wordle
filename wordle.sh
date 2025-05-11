@@ -18,7 +18,11 @@ for i in {1..6}; do
             echo -e "\033[38;2;240;0;0m Wrong input\033[0m"
             read -n 1 -srp 'Press any key to continue'
             clear
-            echo -e "$console$alphabet_console\n"
+            if [[ $alphabet_console != "" ]]; then
+                echo -e "$console$alphabet_console\n"
+            else
+                echo -e "$console"
+            fi
             continue
         fi
 
@@ -29,7 +33,11 @@ for i in {1..6}; do
             echo -e "\033[38;2;240;0;0m Not in word list\033[0m"
             read -n 1 -srp 'Press any key to continue'
             clear
-            echo -e "$console$alphabet_console\n"
+            if [[ $alphabet_console != "" ]]; then
+                echo -e "$console$alphabet_console\n"
+            else
+                echo -e "$console"
+            fi
         fi
     done
 
