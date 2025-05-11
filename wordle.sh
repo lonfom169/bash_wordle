@@ -92,16 +92,12 @@ for i in {1..6}; do
     echo -e "$alphabet_print\n"
 
     if [[ $won == true ]]; then
-        break
+        echo -e "Congrats! Correct word was found in \033[38;2;66;255;255m$i\033[0m attempts."
+        exec $SHELL
     fi
 
     console+="\n$output\n"
 done
 
-if [[ $won == false ]]; then
-    echo -e "You lost! The correct word was: \033[38;2;66;255;255m$word\033[0m"
-else
-    echo -e "Congrats! Correct word was found in \033[38;2;66;255;255m$i\033[0m attempts."
-fi
-
+echo -e "You lost! The correct word was: \033[38;2;66;255;255m$answer\033[0m"
 $SHELL
