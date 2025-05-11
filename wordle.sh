@@ -7,12 +7,9 @@ echo -e "$console"
 
 for i in {1..6}; do
     won=true
-
-    marked1=false
-    marked2=false
-    marked3=false
-    marked4=false
-    marked5=false
+    gray=true
+    result=""
+    slots=""
 
     while true; do
         read -N 5 draft
@@ -40,40 +37,32 @@ for i in {1..6}; do
     echo -e "$console"
 
     for a in {1..5}; do
-        pos=slot$a
-        slot=marked$a
         if [[ $(echo $draft | cut -c$a) == $(echo $word | cut -c$a) ]]; then
-            temp="\033[38;2;0;255;0m$(echo $draft | cut -c$a)\033[0m"
-            eval "$pos"='$temp'
-            temp=true
-            eval "$slot"='$temp'
+            result+="\033[38;2;0;255;0m$(echo $draft | cut -c$a)\033[0m"
             greens+="$(echo $draft | cut -c$a)"
+            slots+=$a
+            continue
         fi
-    done
-
-    for a in {1..5}; do
-        pos=slot$a
-        for j in {1..5}; do
-            slot=marked$j
-            if [[ ${!pos} == "" && ${word:j-1:1} == ${draft:a-1:1} && ${!slot} == false ]]; then
-                temp="\033[38;2;255;255;0m$(echo $draft | cut -c$a)\033[0m"
-                eval "$pos"='$temp'
-                temp=true
-                eval "$slot"='$temp'
+        for b in {1..5}; do
+            if [[ $(echo $draft | cut -c$a) == $(echo $word | cut -c$b) && $(echo $b | tr -d "$slots") != "" ]]; then
+                result+="\033[38;2;255;255;0m$(echo $draft | cut -c$a)\033[0m"
                 yellows+="$(echo $draft | cut -c$a)"
+                slots+=$b
                 won=false
+                gray=false
                 break
             fi
         done
-        if [[ ${!pos} == "" ]]; then
-            temp="$(echo $draft | cut -c$a)"
-            eval "$pos"='$temp'
+        if [[ $gray == true ]]; then
+            result+="$(echo $draft | cut -c$a)"
             grays+="$(echo $draft | cut -c$a)"
             won=false
+        else
+            gray=true
         fi
     done
 
-    output="\n********** $slot1$slot2$slot3$slot4$slot5 ********** \033[38;2;66;255;255mTry #$i\033[0m"
+    output="\n********** $result ********** \033[38;2;66;255;255mTry #$i\033[0m"
     echo -e "$output"
 
     while read letter; do
@@ -99,11 +88,6 @@ for i in {1..6}; do
 
     output=""
     alphabet_print=""
-    slot1=""
-    slot2=""
-    slot3=""
-    slot4=""
-    slot5=""
 done
 
 if [[ $won == false ]]; then
