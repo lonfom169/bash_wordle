@@ -1,15 +1,15 @@
 #!/bin/bash
 
 path=$(dirname $0)
-word=$(shuf -n 1 $path/wordle_La.txt)
+answer=$(shuf -n 1 $path/wordle_La.txt)
 console="\033[38;2;66;255;255mGuess the word:\033[0m\n"
 echo -e "$console"
 
 for i in {1..6}; do
     while true; do
-        read -N 5 draft
+        read -N 5 attempt
 
-        if [[ $draft =~ [^a-zA-Z] ]]; then
+        if [[ $attempt =~ [^a-zA-Z] ]]; then
             echo -e "\033[38;2;240;0;0m Wrong input\033[0m"
             read -n 1 -srp 'Press any key to continue'
             clear
@@ -21,8 +21,8 @@ for i in {1..6}; do
             continue
         fi
 
-        if (grep -Fxq "$draft" "$path"/wordle.txt); then
-            console+="\n$draft"
+        if (grep -Fxq "$attempt" "$path"/wordle.txt); then
+            console+="\n$attempt"
             break
         else
             echo -e "\033[38;2;240;0;0m Not in word list\033[0m"
@@ -46,16 +46,17 @@ for i in {1..6}; do
     alphabet_print=""
 
     for a in {1..5}; do
-        if [[ $(echo $draft | cut -c$a) == $(echo $word | cut -c$a) ]]; then
-            result+="\033[38;2;0;255;0m$(echo $draft | cut -c$a)\033[0m"
-            greens+="$(echo $draft | cut -c$a)"
+        char=$(echo $attempt | cut -c$a)
+        if [[ $char == $(echo $answer | cut -c$a) ]]; then
+            result+="\033[38;2;0;255;0m$char\033[0m"
+            greens+=$char
             slots+=$a
             continue
         fi
         for b in {1..5}; do
-            if [[ $(echo $draft | cut -c$a) == $(echo $word | cut -c$b) && $(echo $b | tr -d "$slots") != "" ]]; then
-                result+="\033[38;2;255;255;0m$(echo $draft | cut -c$a)\033[0m"
-                yellows+="$(echo $draft | cut -c$a)"
+            if [[ $char == $(echo $answer | cut -c$b) && $(echo $b | tr -d "$slots") != "" ]]; then
+                result+="\033[38;2;255;255;0m$char\033[0m"
+                yellows+=$char
                 slots+=$b
                 won=false
                 gray=false
@@ -63,8 +64,8 @@ for i in {1..6}; do
             fi
         done
         if [[ $gray == true ]]; then
-            result+="$(echo $draft | cut -c$a)"
-            grays+="$(echo $draft | cut -c$a)"
+            result+=$char
+            grays+=$char
             won=false
         else
             gray=true
