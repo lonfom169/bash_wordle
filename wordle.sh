@@ -2,6 +2,7 @@
 
 path=$(dirname $0)
 answer=$(shuf -n 1 $path/wordle_La.txt)
+alphabet='abcdefghijklmnopqrstuvwxyz'
 console="\033[38;2;66;255;255mGuess the word:\033[0m\n"
 echo -e "$console"
 
@@ -43,7 +44,6 @@ for i in {1..6}; do
     gray=true
     result=""
     slots=""
-    alphabet_print=""
 
     for a in {1..5}; do
         char=$(echo $attempt | cut -c$a)
@@ -75,17 +75,19 @@ for i in {1..6}; do
     output="\n********** $result ********** \033[38;2;66;255;255mTry #$i\033[0m"
     echo -e "$output"
 
-    while read letter; do
-        if [[ $(echo $letter | tr -d "$greens") == "" ]]; then
-            alphabet_print+="\033[38;2;0;255;0m$letter\033[0m"
-        elif [[ $(echo $letter | tr -d "$yellows") == "" ]]; then
-            alphabet_print+="\033[38;2;255;255;0m$letter\033[0m"
-        elif [[ $(echo $letter | tr -d "$grays") == "" ]]; then
-            alphabet_print+="\033[38;2;240;0;0m$letter\033[0m"
+    alphabet_print=""
+
+    for a in {0..25}; do
+        if [[ $(echo ${alphabet:a:1} | tr -d "$greens") == "" ]]; then
+            alphabet_print+="\033[38;2;0;255;0m${alphabet:a:1}\033[0m"
+        elif [[ $(echo ${alphabet:a:1} | tr -d "$yellows") == "" ]]; then
+            alphabet_print+="\033[38;2;255;255;0m${alphabet:a:1}\033[0m"
+        elif [[ $(echo ${alphabet:a:1} | tr -d "$grays") == "" ]]; then
+            alphabet_print+="\033[38;2;240;0;0m${alphabet:a:1}\033[0m"
         else
-            alphabet_print+="$letter"
+            alphabet_print+=${alphabet:a:1}
         fi
-    done <$path/alphabet.txt
+    done
 
     echo -e "$alphabet_print\n"
 
@@ -94,7 +96,6 @@ for i in {1..6}; do
     fi
 
     console+="\n$output\n"
-    output=""
 done
 
 if [[ $won == false ]]; then
