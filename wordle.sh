@@ -6,11 +6,6 @@ console="\033[38;2;66;255;255mGuess the word:\033[0m\n"
 echo -e "$console"
 
 for i in {1..6}; do
-    won=true
-    gray=true
-    result=""
-    slots=""
-
     while true; do
         read -N 5 draft
 
@@ -18,8 +13,8 @@ for i in {1..6}; do
             echo -e "\033[38;2;240;0;0m Wrong input\033[0m"
             read -n 1 -srp 'Press any key to continue'
             clear
-            if [[ $alphabet_console != "" ]]; then
-                echo -e "$console$alphabet_console\n"
+            if [[ $alphabet_print != "" ]]; then
+                echo -e "$console$alphabet_print\n"
             else
                 echo -e "$console"
             fi
@@ -33,8 +28,8 @@ for i in {1..6}; do
             echo -e "\033[38;2;240;0;0m Not in word list\033[0m"
             read -n 1 -srp 'Press any key to continue'
             clear
-            if [[ $alphabet_console != "" ]]; then
-                echo -e "$console$alphabet_console\n"
+            if [[ $alphabet_print != "" ]]; then
+                echo -e "$console$alphabet_print\n"
             else
                 echo -e "$console"
             fi
@@ -43,6 +38,12 @@ for i in {1..6}; do
 
     clear
     echo -e "$console"
+
+    won=true
+    gray=true
+    result=""
+    slots=""
+    alphabet_print=""
 
     for a in {1..5}; do
         if [[ $(echo $draft | cut -c$a) == $(echo $word | cut -c$a) ]]; then
@@ -92,10 +93,7 @@ for i in {1..6}; do
     fi
 
     console+="\n$output\n"
-    alphabet_console=$alphabet_print
-
     output=""
-    alphabet_print=""
 done
 
 if [[ $won == false ]]; then
