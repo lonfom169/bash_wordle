@@ -4,6 +4,8 @@ path=$(dirname $0)
 answer=$(shuf -n 1 $path/wordle_La.txt)
 alphabet='abcdefghijklmnopqrstuvwxyz'
 console="\033[38;2;66;255;255mGuess the word:\033[0m\n"
+
+clear
 echo -e "$console"
 
 for i in {1..6}; do
