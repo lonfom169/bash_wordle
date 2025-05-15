@@ -47,9 +47,9 @@ for i in {1..6}; do
     green_slots=""
     slots=""
 
-    for a in {1..5}; do
-        char=$(echo $attempt | cut -c$a)
-        if [[ $char == $(echo $answer | cut -c$a) ]]; then
+    for a in {0..4}; do
+        char=${attempt:a:1}
+        if [[ $char == ${answer:a:1} ]]; then
             result[a]="\033[38;2;0;255;0m$char\033[0m"
             greens+=$char
             green_slots+=$a
@@ -58,13 +58,13 @@ for i in {1..6}; do
         fi
     done
 
-    for a in {1..5}; do
+    for a in {0..4}; do
         if [[ $(echo $a | tr -d "$green_slots") == "" ]]; then
             continue
         fi
-        char=$(echo $attempt | cut -c$a)
-        for b in {1..5}; do
-            if [[ $char == $(echo $answer | cut -c$b) && $(echo $b | tr -d "$slots$green_slots") != "" ]]; then
+        char=${attempt:a:1}
+        for b in {0..4}; do
+            if [[ $char == ${answer:b:1} && $(echo $b | tr -d "$slots$green_slots") != "" ]]; then
                 result[a]="\033[38;2;255;255;0m$char\033[0m"
                 yellows+=$char
                 slots+=$b
