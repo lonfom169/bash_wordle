@@ -44,37 +44,43 @@ for i in {1..6}; do
 
     won=true
     gray=true
-    result=""
+    green_slots=""
     slots=""
 
     for a in {1..5}; do
         char=$(echo $attempt | cut -c$a)
         if [[ $char == $(echo $answer | cut -c$a) ]]; then
-            result+="\033[38;2;0;255;0m$char\033[0m"
+            result[a]="\033[38;2;0;255;0m$char\033[0m"
             greens+=$char
-            slots+=$a
+            green_slots+=$a
+        else
+            won=false
+        fi
+    done
+
+    for a in {1..5}; do
+        if [[ $(echo $a | tr -d "$green_slots") == "" ]]; then
             continue
         fi
+        char=$(echo $attempt | cut -c$a)
         for b in {1..5}; do
-            if [[ $char == $(echo $answer | cut -c$b) && $(echo $b | tr -d "$slots") != "" ]]; then
-                result+="\033[38;2;255;255;0m$char\033[0m"
+            if [[ $char == $(echo $answer | cut -c$b) && $(echo $b | tr -d "$slots$green_slots") != "" ]]; then
+                result[a]="\033[38;2;255;255;0m$char\033[0m"
                 yellows+=$char
                 slots+=$b
-                won=false
                 gray=false
                 break
             fi
         done
-        if [[ $gray == true ]]; then
-            result+=$char
+        if [[ $gray == true && $(echo $a | tr -d "$green_slots") != "" ]]; then
+            result[a]=$char
             grays+=$char
-            won=false
         else
             gray=true
         fi
     done
 
-    output="\n********** $result ********** \033[38;2;66;255;255mTry #$i\033[0m"
+    output="\n********** $(echo ${result[*]} | tr -d [:space:]) ********** \033[38;2;66;255;255mTry #$i\033[0m"
     echo -e "$output"
 
     alphabet_print=""
