@@ -8,6 +8,7 @@ It is meant to be played completely offline, on Unix-like systems.
 ```
 git clone https://github.com/lonfom169/bash_wordle
 cd bash_wordle
+gcc -O3 evaluator.c -o evaluator && strip evaluator
 ./wordle.sh
 ```
 

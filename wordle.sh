@@ -4,6 +4,7 @@ path=$(dirname $0)
 answer=$(shuf -n 1 $path/wordle_La.txt)
 alphabet='abcdefghijklmnopqrstuvwxyz'
 console="\033[38;2;66;255;255mGuess the word:\033[0m\n"
+arg1='@@@@@'
 
 clear
 echo -e "$console"
@@ -46,6 +47,8 @@ for i in {1..6}; do
     gray=true
     green_slots=""
     slots=""
+    greens=""
+    yellows=""
 
     for a in {0..4}; do
         char=${attempt:a:1}
@@ -53,44 +56,73 @@ for i in {1..6}; do
             result[a]="\033[38;2;0;255;0m$char\033[0m"
             greens+=$char
             green_slots+=$a
+            arg1=$(echo $arg1 | sed s/./$char/$((a+1)))
         else
             won=false
         fi
     done
 
     for a in {0..4}; do
-        if [[ $(echo $a | tr -d "$green_slots") == "" ]]; then
+        if [[ $green_slots =~ $a ]]; then
             continue
         fi
         char=${attempt:a:1}
         for b in {0..4}; do
-            if [[ $char == ${answer:b:1} && $(echo $b | tr -d "$slots$green_slots") != "" ]]; then
+            if [[ $char == ${answer:b:1} && ! $slots$green_slots =~ $b ]]; then
                 result[a]="\033[38;2;255;255;0m$char\033[0m"
                 yellows+=$char
                 slots+=$b
                 gray=false
+                arg4+=$char$a
                 break
             fi
         done
-        if [[ $gray == true && $(echo $a | tr -d "$green_slots") != "" ]]; then
+        if [[ $gray == true && ! $green_slots =~ $a ]]; then
             result[a]=$char
             grays+=$char
+            if [[ $greens$yellows =~ $char ]]; then
+                if [[ ! $arg5 =~ $char ]]; then
+                    arg5+=$char$(echo $greens$yellows | grep -o "$char" | wc -l)
+                fi
+                grays=$(echo $grays | tr -d "$char")
+            fi
         else
             gray=true
         fi
     done
 
+    not_gray=$greens$yellows
+
+    while [[ $not_gray != "" ]]; do
+        count=$(echo $not_gray | grep -o "${not_gray:0:1}" | wc -l)
+        if [[ $arg2 =~ ${not_gray:0:1} ]]; then
+            if [[ $count -gt $(echo $arg2 | cut -d "${not_gray:0:1}" -f2 | cut -c1) ]]; then
+                arg2=${arg2/${not_gray:0:1}?/${not_gray:0:1}$count}
+            fi
+        else
+            arg2+=${not_gray:0:1}$count
+        fi
+        not_gray=$(echo $not_gray | tr -d "${not_gray:0:1}")
+    done
+
     output="\n********** $(echo ${result[*]} | tr -d [:space:]) ********** \033[38;2;66;255;255mTry #$i\033[0m"
+
+    if [[ $won == false ]]; then
+        output+=" -> $($path/evaluator - $arg1 - $arg2 - $grays - $arg4 - $arg5)"
+    fi
+
     echo -e "$output"
 
     alphabet_print=""
+    all_greens+=$greens
+    all_yellows+=$yellows
 
     for a in {0..25}; do
-        if [[ $(echo ${alphabet:a:1} | tr -d "$greens") == "" ]]; then
+        if [[ $all_greens =~ ${alphabet:a:1} ]]; then
             alphabet_print+="\033[38;2;0;255;0m${alphabet:a:1}\033[0m"
-        elif [[ $(echo ${alphabet:a:1} | tr -d "$yellows") == "" ]]; then
+        elif [[ $all_yellows =~ ${alphabet:a:1} ]]; then
             alphabet_print+="\033[38;2;255;255;0m${alphabet:a:1}\033[0m"
-        elif [[ $(echo ${alphabet:a:1} | tr -d "$grays") == "" ]]; then
+        elif [[ $grays =~ ${alphabet:a:1} ]]; then
             alphabet_print+="\033[38;2;240;0;0m${alphabet:a:1}\033[0m"
         else
             alphabet_print+=${alphabet:a:1}
